@@ -1,0 +1,8 @@
+# Donkey cell Atlas
+Donkeys (Equus asinus) are a valuable livestock resource in the world, especially the economy value of meat and milk, also Chinese medical value of skin. The physiological characteristics is key to its adaptability in donkey, such as digestive, respiratory and reproductive system, which enable them to survive and work in a variety of environments. However, the understanding of donkeys in physiological characteristics from cellular resolution is extremely scant. Thus, we employed single-cell transcriptome sequencing to construct a detailed transcriptional atlas of from twenty tissues in Dezhou donkey, total 84 cell types and 275,050 high quality cells, to investigate the molecular features of cells, tissues, and organ systems in depth. Cross-species and cross-tissue comparative analyses revealed that SOX10 is a conserved regulon in oligodendrocytes and illuminated the distinctive transcriptional patterns of donkey sebocyte. Moreover, through multi-species skin metabolomics, we identified species-specific high-abundance metabolites in donkey skin, such as arachidonic acid and gamma-glutamylcysteine, and highlighted the pivotal role of sebocyte in the metabolic environment of donkey skin. In summary, our work offers new insights into the unique metabolic patterns of donkey skin and provide a valuable resource for the conservation of donkey germplasm and the advancement of selective breeding programs.
+
+# Title：
+Revealing the transcriptional and metabolic characteristics of sebocyte based on the donkey cell transcriptome atlas
+
+# Authors：
+Yu Tian, Shuqin Liu, Hongtao Shi, Jianjun Li, Yujiang Sun, Teng Zhang, Junjie Wang, Wei Shen
