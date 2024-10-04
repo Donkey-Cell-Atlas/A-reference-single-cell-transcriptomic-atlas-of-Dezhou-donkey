@@ -279,8 +279,8 @@ Species = useMart("ensembl", dataset = "Species_gene_ensembl")
 data = getLDS(attributes = c("Species_symbol"), filters = "Species_symbol", values = usGenes , mart = Species, attributesL = c("hgnc_symbol","ensembl_gene_id"), martL = human, uniqueRows=T)
 data <- data[!duplicated(data[,1]),]
 data <- data[!duplicated(data[,2]),]
-count_raw <- as.matrix(count_raw)  # 需要转换为矩阵进行操作
-count_raw <- as.data.frame(count_raw)  # 需要转换为矩阵进行操作
+
+count_raw <- as.data.frame(count_raw)  
 count_raw <- subset(count_raw, rownames(count_raw) %in% data$Gene.name)
 count_raw$Gene.name <- rownames(count_raw)
 count_final <- merge(data, count_raw, by="Gene.name", all=T) 
