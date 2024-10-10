@@ -35,7 +35,7 @@ library(cowplot)
 
 input=Read10X(data.dir = "./soupX_matrix",gene.column = 1)
 input <- CreateSeuratObject(counts = input, project = "input", min.cells = 3, min.features = 200)
-input[["percent.mt"]]<-PercentageFeatureSet(input,pattern = "^MT")
+input[["percent.mt"]]<-PercentageFeatureSet(input,pattern = "^MT-")
 input <- subset(input, subset =  nFeature_RNA > 200 & nFeature_RNA < 5000 & percent.mt < 10)
 input <- NormalizeData(input, normalization.method = "LogNormalize", scale.factor = 10000)
 input <- FindVariableFeatures(input, selection.method = "vst", nfeatures = 2000)
