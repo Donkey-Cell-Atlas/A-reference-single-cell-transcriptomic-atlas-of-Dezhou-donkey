@@ -20,7 +20,7 @@ all <- FindClusters(all, resolution = 0.5)
 all <- RunUMAP(all, dims = 1:20)
 matx <- all@meta.data
 sc = SoupChannel(tod, toc)
-sc = setClusters(sc, setNames(matx\$seurat_clusters, rownames(matx)))
+sc = setClusters(sc, setNames(matx$seurat_clusters, rownames(matx)))
 #sc = setContaminationFraction(sc, 0.2)
 sc = autoEstCont(sc)
 out = adjustCounts(sc)
