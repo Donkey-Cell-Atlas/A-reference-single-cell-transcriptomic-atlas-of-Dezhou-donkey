@@ -643,13 +643,4 @@ Sebocyte <- as.matrix(Sebocyte@assays$RNA@counts)
 Sample_nichenetr <-read.table("./Sample.txt")
 Sample_nichenetr <- subset(Sebocyte, rownames(Sebocyte) %in% Sample_nichenetr)
 LinkList <- getLinkList(Sample_nichenetr, threshold=0.01)
-
-
-
-
-
-
-
-
-
-
+write.table(LinkList,"./LinkList.txt", quote = FALSE)
