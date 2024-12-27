@@ -614,7 +614,7 @@ weighted_networks = readRDS('./weighted_networks_nsga2r_final.rds')
 receiver = "Sebocyte"
 expressed_genes_receiver = get_expressed_genes(receiver, Sample, pct = 0.10,assay_oi = 'RNA')
 background_expressed_genes = rownames(ligand_target_matrix)
-sender_celltypes = c("Endothelial cell","Fibroblast", "Keratinocyte", "Macrophage", "Mast cell", "Melanocyte", 'Pericyte','Smooth muscle cell','Sweat gland epithelial cell')
+sender_celltypes = c("Endothelial cell","Fibroblast", "Keratinocyte", "Macrophage", "Mast cell", "Melanocyte", "Pericyte","Smooth muscle cell","Sweat gland epithelial cell")
 list_expressed_genes_sender = sender_celltypes %>% unique() %>% lapply(get_expressed_genes, Sample, 0.10,assay_oi = 'RNA')
 expressed_genes_sender = list_expressed_genes_sender %>% unlist() %>% unique()
 
