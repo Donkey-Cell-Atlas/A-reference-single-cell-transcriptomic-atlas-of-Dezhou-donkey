@@ -598,3 +598,58 @@ netVisual_circle(cellchat@net$counts,
 				 
 netAnalysis_signalingRole_heatmap(cellchat, pattern = "outgoing")
 netAnalysis_signalingRole_heatmap(cellchat, pattern = "incoming")
+
+###########################
+########-nichenetr-########
+###########################
+###The single-cell data from donkey skin should initially undergo conversion to their human homologous genes.
+library(nichenetr)
+library(Seurat)
+
+Sample<-readRDS("./Sample.rds")
+Idents(Sample) <- "celltype"
+ligand_target_matrix = readRDS('./ligand_target_matrix_nsga2r_final.rds')
+lr_network = readRDS('./lr_network_human_21122021.rds')
+weighted_networks = readRDS('./weighted_networks_nsga2r_final.rds')
+receiver = "Sebocyte"
+expressed_genes_receiver = get_expressed_genes(receiver, Sample, pct = 0.10,assay_oi = 'RNA')
+background_expressed_genes = rownames(ligand_target_matrix)
+sender_celltypes = c("Endothelial cell","Fibroblast", "Keratinocyte", "Macrophage", "Mast cell", "Melanocyte", 'Pericyte','Smooth muscle cell','Sweat gland epithelial cell')
+list_expressed_genes_sender = sender_celltypes %>% unique() %>% lapply(get_expressed_genes, Sample, 0.10,assay_oi = 'RNA')
+expressed_genes_sender = list_expressed_genes_sender %>% unlist() %>% unique()
+
+seurat_obj_receiver= subset(Sample, idents = receiver)
+geneset_oi = expressed_genes_receiver
+ligands = lr_network %>% pull(from) %>% unique()
+receptors = lr_network %>% pull(to) %>% unique()
+expressed_ligands = intersect(ligands,expressed_genes_sender)
+expressed_receptors = intersect(receptors,expressed_genes_receiver)
+potential_ligands = lr_network %>% filter(from %in% expressed_ligands & to %in% expressed_receptors) %>% pull(from) %>% unique()
+ligand_activities = ligand_activities %>% arrange(-pearson) %>% mutate(rank = rank(desc(pearson)))
+best_upstream_ligands = ligand_activities %>% top_n(30, pearson) %>% arrange(-pearson) %>% pull(test_ligand) %>% unique()
+active_ligand_target_links_df = best_upstream_ligands %>% lapply(get_weighted_ligand_target_links,geneset = geneset_oi, ligand_target_matrix = ligand_target_matrix, n = 1000) %>% bind_rows() %>% drop_na()
+write.table(active_ligand_target_links_df,"./active_ligand_target_links_df.txt", quote = FALSE)
+
+########################
+########-GENIE3-########
+########################
+library(GENIE3)
+library(Seurat)
+
+Sample<-readRDS("./Sample.rds")
+Idents(Sample) <- "celltype"
+Sebocyte<-subset(Sample,idents=c("Sebocyte"))
+Sebocyte <- as.matrix(Sebocyte@assays$RNA@counts)
+Sample_nichenetr <-read.table("./Sample.txt")
+Sample_nichenetr <- subset(Sebocyte, rownames(Sebocyte) %in% Sample_nichenetr)
+LinkList <- getLinkList(Sample_nichenetr, threshold=0.01)
+
+
+
+
+
+
+
+
+
+
