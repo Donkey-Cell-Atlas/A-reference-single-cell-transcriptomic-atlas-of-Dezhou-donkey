@@ -86,11 +86,9 @@ FeaturePlot(input, features = c("XXXX"), min.cutoff = "q9",pt.size = 1,reduction
 library(Seurat)
 library(cowplot)
 
-Sample<-readRDS("./Sample.rds")
-Sample@meta.data$tissue <- "Sample"
-tissue_all<-merge(x=Sample_1,y=Sample_list,project = "Donkey")
-tissue_all <- NormalizeData(object = tissue_all, normalization.method = "LogNormalize")
-tissue_all<- FindVariableFeatures(object = tissue_all)
+features <- SelectIntegrationFeatures(object.list = Sample_list)
+tissue_all <- FindIntegrationAnchors(object.list =Sample_list, anchor.features = features)
+tissue_all <- IntegrateData(anchorset = tissue_all)
 tissue_all <- ScaleData(tissue_all)
 tissue_all <- RunPCA(tissue_all)
 tissue_all <- RunUMAP(tissue_all, reduction = "pca", dims = 1:20)
