@@ -5,4 +5,4 @@ Worldwide, donkeys (Equus asinus) are valued for their meat and milk, but also i
 Revealing the transcriptional and metabolic characteristics of sebocytes based on the donkey cell transcriptome atlas
 
 # Authors：
-Yu Tian, Shuqin Liu, Hongtao Shi, Jianjun Li, Xinglong Wan, Yujiang Sun, Teng Zhang, Junjie Wang, Wei Shen
+Yu Tian, Shuqin Liu, Hongtao Shi, Jianjun Li, Xinglong Wan, Yujiang Sun, Huayun Li, Ning Cao, Zhixi Feng, Teng Zhang, Junjie Wang, Wei Shen
